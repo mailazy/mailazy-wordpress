@@ -1,0 +1,44 @@
+#toplevel_page_mailazy img{
+    width: 28px;
+    height: 28px;
+}
+#mailazy_admin {
+    margin-top: 20px;
+}
+.mailazy_logo {
+    width: 200px;
+}
+.mailazy_config{
+    width: 70%;
+}
+.mailazy_field{
+    margin: 20px;
+}
+.mailazy_red{
+	color:red;
+}
+#mailazy_admin label {
+    width: 20%;
+    display: inline-block;
+    vertical-align: top;
+    font-weight: bold;
+}
+#mailazy_admin input[type=text],#mailazy_admin input[type=password]{
+    width: 79%;
+    display: inline;
+}
+.mailazy_field .submit,.mailazy_field .submit input{
+    float: right;
+    margin-top: -7px;
+}
+.mailazy_field .submit {
+    width: 140px;
+}
+.mailazy_verification.button {
+    position: absolute;
+    margin-left: -143px;
+    width: 142px;
+}
+.mailazy_message {
+    margin-left: 21%;
+}
