@@ -63,7 +63,7 @@ We offer 24/7 support, reach out to our support team, or refer our product docum
 		https://mailazy.com/docs/guide/api-key-and-secret/
 		
 = How can I verify my domain? =
-		Link of domain verification 
+		https://mailazy.com/docs/guide/verify-domain/
 
 
 == Changelog ==
