@@ -36,7 +36,7 @@ Activate your plugin in WordPress by clicking on "Mailazy".
 We offer 24/7 support, reach out to our support team, or refer our product documents
 
 -   Live chat
--   Email Support mailto:help@mailazy.com
+-   Email Support mailto:support@mailazy.com
 -   [Support documentation](https://mailazy.com/docs/)
 
 == Frequently Asked Questions ==
