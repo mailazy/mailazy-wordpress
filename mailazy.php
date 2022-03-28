@@ -3,8 +3,8 @@
 /**
  * Plugin Name: Mailazy 
  * Plugin URI: https://github.com/mailazy/wordpress
- * Description: Mailazy provides a secure and delightful experience to your customer with passwordless. Here, you'll find comprehensive guides and documentation to help you to start working with Mailazy APIs.
- * Version: 1.0
+ * Description: Mailazy provides a secure and delightful experience to your customer with Email API.
+ * Version: 1.4
  * Author: Mailazy Team
  * Author URI: https://mailazy.com
  * License: GPL2+
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 // If this file is called directly, abort.
 define('MAILAZY_ROOT_DIR', plugin_dir_path(__FILE__));
 define('MAILAZY_ROOT_URL', plugin_dir_url(__FILE__));
-define('MAILAZY_PLUGIN_VERSION', '1.0');
+define('MAILAZY_PLUGIN_VERSION', '1.4');
 define('MAILAZY_ROOT_SETTING_LINK', plugin_basename(__FILE__));
 
 if (!class_exists('mailazyPlugin')) {
@@ -23,356 +23,355 @@ if (!class_exists('mailazyPlugin')) {
     /**
      * The main class and initialization point of the plugin.
      */
-    class mailazyPlugin
-    {
+    class mailazyPlugin {
 
         /**
          * Constructor
          */
-        public function __construct()
-        {
+        public function __construct() {
             $this->define_constants();
-			//add_action( 'phpmailer_init', array($this,'mailazy_phpmailer_init') );
-			$mailazy_option = get_option('mailazy_option');
-			if(!function_exists('wp_mail') && isset($mailazy_option['enable']) && $mailazy_option['enable']=="1"){
-				/**
-				 * Sends an email, similar to PHP's mail function.
-				 *
-				 * A true return value does not automatically mean that the user received the
-				 * email successfully. It just only means that the method used was able to
-				 * process the request without any errors.
-				 *
-				 * The default content type is `text/plain` which does not allow using HTML.
-				 * However, you can set the content type of the email by using the
-				 * {@see 'wp_mail_content_type'} filter.
-				 *
-				 * The default charset is based on the charset used on the blog. The charset can
-				 * be set using the {@see 'wp_mail_charset'} filter.
-				 *
-				 * @since 1.2.1
-				 * @since 5.5.0 is_email() is used for email validation,
-				 *              instead of emailService's default validator.
-				 *
-				 * @global emailService\emailService\emailService $emailService
-				 *
-				 * @param string|string[] $to          Array or comma-separated list of email addresses to send message.
-				 * @param string          $subject     Email subject.
-				 * @param string          $message     Message contents.
-				 * @param string|string[] $headers     Optional. Additional headers.
-				 * @param string|string[] $attachments Optional. Paths to files to attach.
-				 * @return bool Whether the email was sent successfully.
-				 */
-				function wp_mail( $to, $subject, $message, $headers = '', $attachments = array() ) {
-					$mailazy_option = get_option('mailazy_option');
-					// Compact the input, apply the filters, and extract them back out.
-					/**
-					 * Filters the wp_mail() arguments.
-					 *
-					 * @since 2.2.0
-					 *
-					 * @param array $args {
-					 *     Array of the `wp_mail()` arguments.
-					 *
-					 *     @type string|string[] $to          Array or comma-separated list of email addresses to send message.
-					 *     @type string          $subject     Email subject.
-					 *     @type string          $message     Message contents.
-					 *     @type string|string[] $headers     Additional headers.
-					 *     @type string|string[] $attachments Paths to files to attach.
-					 * }
-					 */
-					$atts = apply_filters( 'wp_mail', compact( 'to', 'subject', 'message', 'headers', 'attachments' ) );
+            //add_action( 'phpmailer_init', array($this,'mailazy_phpmailer_init') );
+            $mailazy_option = get_option('mailazy_option');
+            if (!function_exists('wp_mail') && isset($mailazy_option['enable']) && $mailazy_option['enable'] == "1") {
 
-					/**
-					 * Filters whether to preempt sending an email.
-					 *
-					 * Returning a non-null value will short-circuit {@see wp_mail()}, returning
-					 * that value instead. A boolean return value should be used to indicate whether
-					 * the email was successfully sent.
-					 *
-					 * @since 5.7.0
-					 *
-					 * @param null|bool $return Short-circuit return value.
-					 * @param array     $atts {
-					 *     Array of the `wp_mail()` arguments.
-					 *
-					 *     @type string|string[] $to          Array or comma-separated list of email addresses to send message.
-					 *     @type string          $subject     Email subject.
-					 *     @type string          $message     Message contents.
-					 *     @type string|string[] $headers     Additional headers.
-					 *     @type string|string[] $attachments Paths to files to attach.
-					 * }
-					 */
-					$pre_wp_mail = apply_filters( 'pre_wp_mail', null, $atts );
+                /**
+                 * Sends an email, similar to PHP's mail function.
+                 *
+                 * A true return value does not automatically mean that the user received the
+                 * email successfully. It just only means that the method used was able to
+                 * process the request without any errors.
+                 *
+                 * The default content type is `text/plain` which does not allow using HTML.
+                 * However, you can set the content type of the email by using the
+                 * {@see 'wp_mail_content_type'} filter.
+                 *
+                 * The default charset is based on the charset used on the blog. The charset can
+                 * be set using the {@see 'wp_mail_charset'} filter.
+                 *
+                 * @since 1.2.1
+                 * @since 5.5.0 is_email() is used for email validation,
+                 *              instead of emailService's default validator.
+                 *
+                 * @global emailService\emailService\emailService $emailService
+                 *
+                 * @param string|string[] $to          Array or comma-separated list of email addresses to send message.
+                 * @param string          $subject     Email subject.
+                 * @param string          $message     Message contents.
+                 * @param string|string[] $headers     Optional. Additional headers.
+                 * @param string|string[] $attachments Optional. Paths to files to attach.
+                 * @return bool Whether the email was sent successfully.
+                 */
+                function wp_mail($to, $subject, $message, $headers = '', $attachments = array()) {
+                    $mailazy_option = get_option('mailazy_option');
+                    // Compact the input, apply the filters, and extract them back out.
+                    /**
+                     * Filters the wp_mail() arguments.
+                     *
+                     * @since 2.2.0
+                     *
+                     * @param array $args {
+                     *     Array of the `wp_mail()` arguments.
+                     *
+                     *     @type string|string[] $to          Array or comma-separated list of email addresses to send message.
+                     *     @type string          $subject     Email subject.
+                     *     @type string          $message     Message contents.
+                     *     @type string|string[] $headers     Additional headers.
+                     *     @type string|string[] $attachments Paths to files to attach.
+                     * }
+                     */
+                    $atts = apply_filters('wp_mail', compact('to', 'subject', 'message', 'headers', 'attachments'));
 
-					if ( null !== $pre_wp_mail ) {
-						return $pre_wp_mail;
-					}
+                    /**
+                     * Filters whether to preempt sending an email.
+                     *
+                     * Returning a non-null value will short-circuit {@see wp_mail()}, returning
+                     * that value instead. A boolean return value should be used to indicate whether
+                     * the email was successfully sent.
+                     *
+                     * @since 5.7.0
+                     *
+                     * @param null|bool $return Short-circuit return value.
+                     * @param array     $atts {
+                     *     Array of the `wp_mail()` arguments.
+                     *
+                     *     @type string|string[] $to          Array or comma-separated list of email addresses to send message.
+                     *     @type string          $subject     Email subject.
+                     *     @type string          $message     Message contents.
+                     *     @type string|string[] $headers     Additional headers.
+                     *     @type string|string[] $attachments Paths to files to attach.
+                     * }
+                     */
+                    $pre_wp_mail = apply_filters('pre_wp_mail', null, $atts);
 
-					if ( isset( $atts['to'] ) ) {
-						$to = $atts['to'];
-					}
+                    if (null !== $pre_wp_mail) {
+                        return $pre_wp_mail;
+                    }
 
-					if ( ! is_array( $to ) ) {
-						$to = explode( ',', $to );
-					}
+                    if (isset($atts['to'])) {
+                        $to = $atts['to'];
+                    }
 
-					if ( isset( $atts['subject'] ) ) {
-						$subject = $atts['subject'];
-					}
+                    if (!is_array($to)) {
+                        $to = explode(',', $to);
+                    }
 
-					if ( isset( $atts['message'] ) ) {
-						$message = $atts['message'];
-					}
+                    if (isset($atts['subject'])) {
+                        $subject = $atts['subject'];
+                    }
 
-					if ( isset( $atts['headers'] ) ) {
-						$headers = $atts['headers'];
-					}
+                    if (isset($atts['message'])) {
+                        $message = $atts['message'];
+                    }
 
-					if ( isset( $atts['attachments'] ) ) {
-						$attachments = $atts['attachments'];
-					}
+                    if (isset($atts['headers'])) {
+                        $headers = $atts['headers'];
+                    }
 
-					if ( ! is_array( $attachments ) ) {
-						$attachments = explode( "\n", str_replace( "\r\n", "\n", $attachments ) );
-					}
-					global $emailService;
+                    if (isset($atts['attachments'])) {
+                        $attachments = $atts['attachments'];
+                    }
 
-					// (Re)create it, if it's gone missing.
-					if ( ! ( $emailService instanceof mailazyWPClient ) ) {
-						require_once(MAILAZY_ROOT_DIR."mailazyWPClient.php");
-						$emailService = new mailazyWPClient();
-						$emailService->setApikey($mailazy_option['apikey']);
-						$emailService->setApisecret($mailazy_option['apisecretkey']);
-					}
+                    if (!is_array($attachments)) {
+                        $attachments = explode("\n", str_replace("\r\n", "\n", $attachments));
+                    }
+                    global $emailService;
 
-					// Headers.
-					$cc       = array();
-					$bcc      = array();
-					$reply_to = array();
+                    // (Re)create it, if it's gone missing.
+                    if (!( $emailService instanceof mailazyWPClient )) {
+                        require_once(MAILAZY_ROOT_DIR . "mailazyWPClient.php");
+                        $emailService = new mailazyWPClient();
+                        $emailService->setApikey($mailazy_option['apikey']);
+                        $emailService->setApisecret($mailazy_option['apisecretkey']);
+                    }
 
-					if ( empty( $headers ) ) {
-						$headers = array();
-					} else {
-						if ( ! is_array( $headers ) ) {
-							// Explode the headers out, so this function can take
-							// both string headers and an array of headers.
-							$tempheaders = explode( "\n", str_replace( "\r\n", "\n", $headers ) );
-						} else {
-							$tempheaders = $headers;
-						}
-						$headers = array();
+                    // Headers.
+                    $cc = array();
+                    $bcc = array();
+                    $reply_to = array();
 
-						// If it's actually got contents.
-						if ( ! empty( $tempheaders ) ) {
-							// Iterate through the raw headers.
-							foreach ( (array) $tempheaders as $header ) {
-								if ( strpos( $header, ':' ) === false ) {
-									if ( false !== stripos( $header, 'boundary=' ) ) {
-										$parts    = preg_split( '/boundary=/i', trim( $header ) );
-										$boundary = trim( str_replace( array( "'", '"' ), '', $parts[1] ) );
-									}
-									continue;
-								}
-								// Explode them out.
-								list( $name, $content ) = explode( ':', trim( $header ), 2 );
+                    if (empty($headers)) {
+                        $headers = array();
+                    } else {
+                        if (!is_array($headers)) {
+                            // Explode the headers out, so this function can take
+                            // both string headers and an array of headers.
+                            $tempheaders = explode("\n", str_replace("\r\n", "\n", $headers));
+                        } else {
+                            $tempheaders = $headers;
+                        }
+                        $headers = array();
 
-								// Cleanup crew.
-								$name    = trim( $name );
-								$content = trim( $content );
+                        // If it's actually got contents.
+                        if (!empty($tempheaders)) {
+                            // Iterate through the raw headers.
+                            foreach ((array) $tempheaders as $header) {
+                                if (strpos($header, ':') === false) {
+                                    if (false !== stripos($header, 'boundary=')) {
+                                        $parts = preg_split('/boundary=/i', trim($header));
+                                        $boundary = trim(str_replace(array("'", '"'), '', $parts[1]));
+                                    }
+                                    continue;
+                                }
+                                // Explode them out.
+                                list( $name, $content ) = explode(':', trim($header), 2);
 
-								switch ( strtolower( $name ) ) {
-									// Mainly for legacy -- process a "From:" header if it's there.
-									case 'content-type':
-										if ( strpos( $content, ';' ) !== false ) {
-											list( $type, $charset_content ) = explode( ';', $content );
-											$content_type                   = trim( $type );
-											if ( false !== stripos( $charset_content, 'charset=' ) ) {
-												$charset = trim( str_replace( array( 'charset=', '"' ), '', $charset_content ) );
-											} elseif ( false !== stripos( $charset_content, 'boundary=' ) ) {
-												$boundary = trim( str_replace( array( 'BOUNDARY=', 'boundary=', '"' ), '', $charset_content ) );
-												$charset  = '';
-											}
+                                // Cleanup crew.
+                                $name = trim($name);
+                                $content = trim($content);
 
-											// Avoid setting an empty $content_type.
-										} elseif ( '' !== trim( $content ) ) {
-											$content_type = trim( $content );
-										}
-										break;
-									case 'cc':
-										$cc = array_merge( (array) $cc, explode( ',', $content ) );
-										break;
-									case 'bcc':
-										$bcc = array_merge( (array) $bcc, explode( ',', $content ) );
-										break;
-									case 'reply-to':
-										$reply_to = array_merge( (array) $reply_to, explode( ',', $content ) );
-										break;
-									default:
-										// Add it to our grand headers array.
-										$headers[ trim( $name ) ] = trim( $content );
-										break;
-								}
-							}
-						}
-					}
-					
-					try {
-						$emailService->setFrom( $mailazy_option['fromemail'] );
-					} catch ( Exception $e ) {
-						$mail_error_data                             = compact( 'to', 'subject', 'message', 'headers', 'attachments' );
-						$mail_error_data['phpmailer_exception_code'] = $e->getCode();
+                                switch (strtolower($name)) {
+                                    // Mainly for legacy -- process a "From:" header if it's there.
+                                    case 'content-type':
+                                        if (strpos($content, ';') !== false) {
+                                            list( $type, $charset_content ) = explode(';', $content);
+                                            $content_type = trim($type);
+                                            if (false !== stripos($charset_content, 'charset=')) {
+                                                $charset = trim(str_replace(array('charset=', '"'), '', $charset_content));
+                                            } elseif (false !== stripos($charset_content, 'boundary=')) {
+                                                $boundary = trim(str_replace(array('BOUNDARY=', 'boundary=', '"'), '', $charset_content));
+                                                $charset = '';
+                                            }
 
-						/** This filter is documented in wp-includes/pluggable.php */
-						do_action( 'wp_mail_failed', new WP_Error( 'wp_mail_failed', $e->getMessage(), $mail_error_data ) );
+                                            // Avoid setting an empty $content_type.
+                                        } elseif ('' !== trim($content)) {
+                                            $content_type = trim($content);
+                                        }
+                                        break;
+                                    case 'cc':
+                                        $cc = array_merge((array) $cc, explode(',', $content));
+                                        break;
+                                    case 'bcc':
+                                        $bcc = array_merge((array) $bcc, explode(',', $content));
+                                        break;
+                                    case 'reply-to':
+                                        $reply_to = array_merge((array) $reply_to, explode(',', $content));
+                                        break;
+                                    default:
+                                        // Add it to our grand headers array.
+                                        $headers[trim($name)] = trim($content);
+                                        break;
+                                }
+                            }
+                        }
+                    }
 
-						return false;
-					}
+                    try {
+                        $emailService->setFrom($mailazy_option['fromemail']);
+                    } catch (Exception $e) {
+                        $mail_error_data = compact('to', 'subject', 'message', 'headers', 'attachments');
+                        $mail_error_data['phpmailer_exception_code'] = $e->getCode();
 
-					// Set mail's subject and body.
-					$emailService->setSubject($subject);
-					$emailService->setBody($message);
+                        /** This filter is documented in wp-includes/pluggable.php */
+                        do_action('wp_mail_failed', new WP_Error('wp_mail_failed', $e->getMessage(), $mail_error_data));
 
-					// Set destination addresses, using appropriate methods for handling addresses.
-					$address_headers = compact( 'to', 'cc', 'bcc', 'reply_to' );
+                        return false;
+                    }
 
-					foreach ( $address_headers as $address_header => $addresses ) {
-						if ( empty( $addresses ) ) {
-							continue;
-						}
+                    // Set mail's subject and body.
+                    $emailService->setSubject($subject);
+                    $emailService->setBody($message);
 
-						foreach ( (array) $addresses as $address ) {
-							try {
-								// Break $recipient into name and address parts if in the format "Foo <bar@baz.com>".
-								$recipient_name = '';
+                    // Set destination addresses, using appropriate methods for handling addresses.
+                    $address_headers = compact('to', 'cc', 'bcc', 'reply_to');
 
-								if ( preg_match( '/(.*)<(.+)>/', $address, $matches ) ) {
-									if ( count( $matches ) == 3 ) {
-										$recipient_name = $matches[1];
-										$address        = $matches[2];
-									}
-								}
+                    foreach ($address_headers as $address_header => $addresses) {
+                        if (empty($addresses)) {
+                            continue;
+                        }
 
-								switch ( $address_header ) {
-									case 'to':
-										$emailService->addAddress( $address, $recipient_name );
-										break;
-									case 'cc':
-										$emailService->addCC( $address, $recipient_name );
-										break;
-									case 'bcc':
-										$emailService->addBCC( $address, $recipient_name );
-										break;
-									case 'reply_to':
-										$emailService->addReplyTo( $address, $recipient_name );
-										break;
-								}
-							} catch ( Exception $e ) {
-								continue;
-							}
-						}
-					}
+                        foreach ((array) $addresses as $address) {
+                            try {
+                                // Break $recipient into name and address parts if in the format "Foo <bar@baz.com>".
+                                $recipient_name = '';
 
-					// Set Content-Type and charset.
+                                if (preg_match('/(.*)<(.+)>/', $address, $matches)) {
+                                    if (count($matches) == 3) {
+                                        $recipient_name = $matches[1];
+                                        $address = $matches[2];
+                                    }
+                                }
 
-					// If we don't have a content-type from the input headers.
-					if ( ! isset( $content_type ) ) {
-						$content_type = 'text/plain';
-					}
+                                switch ($address_header) {
+                                    case 'to':
+                                        $emailService->addAddress($address, $recipient_name);
+                                        break;
+                                    case 'cc':
+                                        $emailService->addCC($address, $recipient_name);
+                                        break;
+                                    case 'bcc':
+                                        $emailService->addBCC($address, $recipient_name);
+                                        break;
+                                    case 'reply_to':
+                                        $emailService->addReplyTo($address, $recipient_name);
+                                        break;
+                                }
+                            } catch (Exception $e) {
+                                continue;
+                            }
+                        }
+                    }
 
-					/**
-					 * Filters the wp_mail() content type.
-					 *
-					 * @since 2.3.0
-					 *
-					 * @param string $content_type Default wp_mail() content type.
-					 */
-					$content_type = apply_filters( 'wp_mail_content_type', $content_type );
+                    // Set Content-Type and charset.
+                    // If we don't have a content-type from the input headers.
+                    if (!isset($content_type)) {
+                        $content_type = 'text/plain';
+                    }
 
-					$emailService->ContentType = $content_type;
+                    /**
+                     * Filters the wp_mail() content type.
+                     *
+                     * @since 2.3.0
+                     *
+                     * @param string $content_type Default wp_mail() content type.
+                     */
+                    $content_type = apply_filters('wp_mail_content_type', $content_type);
 
-					// Set whether it's plaintext, depending on $content_type.
-					if ( 'text/html' === $content_type ) {
-						$emailService->isHTML( true );
-					}
+                    $emailService->ContentType = $content_type;
 
-					// If we don't have a charset from the input headers.
-					if ( ! isset( $charset ) ) {
-						$charset = get_bloginfo( 'charset' );
-					}
+                    // Set whether it's plaintext, depending on $content_type.
+                    if ('text/html' === $content_type) {
+                        $emailService->isHTML(true);
+                    }
 
-					/**
-					 * Filters the default wp_mail() charset.
-					 *
-					 * @since 2.3.0
-					 *
-					 * @param string $charset Default email charset.
-					 */
-					$emailService->CharSet = apply_filters( 'wp_mail_charset', $charset );
+                    // If we don't have a charset from the input headers.
+                    if (!isset($charset)) {
+                        $charset = get_bloginfo('charset');
+                    }
 
-					if ( ! empty( $attachments ) ) {
-						foreach ( $attachments as $attachment ) {
-							try {
-								$emailService->addAttachment( $attachment );
-							} catch ( Exception $e ) {
-								continue;
-							}
-						}
-					}
+                    /**
+                     * Filters the default wp_mail() charset.
+                     *
+                     * @since 2.3.0
+                     *
+                     * @param string $charset Default email charset.
+                     */
+                    $emailService->CharSet = apply_filters('wp_mail_charset', $charset);
 
-					/**
-					 * Fires after emailService is initialized.
-					 *
-					 * @since 2.2.0
-					 *
-					 * @param emailService $emailService The emailService instance (passed by reference).
-					 */
-					do_action_ref_array( 'phpmailer_init', array( &$emailService ) );
+                    if (!empty($attachments)) {
+                        foreach ($attachments as $attachment) {
+                            try {
+                                $emailService->addAttachment($attachment);
+                            } catch (Exception $e) {
+                                continue;
+                            }
+                        }
+                    }
 
-					// Send!
-					try {
-						return $emailService->send();
-					} catch ( Exception $e ) {
+                    /**
+                     * Fires after emailService is initialized.
+                     *
+                     * @since 2.2.0
+                     *
+                     * @param emailService $emailService The emailService instance (passed by reference).
+                     */
+                    do_action_ref_array('phpmailer_init', array(&$emailService));
 
-						$mail_error_data = compact( 'to', 'subject', 'message', 'headers', 'attachments' );
-						$mail_error_data['phpmailer_exception_code'] = $e->getCode();
+                    // Send!
+                    try {
+                        return $emailService->send();
+                    } catch (Exception $e) {
 
-						/**
-						 * Fires after a Exception is caught.
-						 *
-						 * @since 4.4.0
-						 *
-						 * @param WP_Error $error A WP_Error object with the Exception message, and an array
-						 *                        containing the mail recipient, subject, message, headers, and attachments.
-						 */
-						do_action( 'wp_mail_failed', new WP_Error( 'wp_mail_failed', $e->getMessage(), $mail_error_data ) );
+                        $mail_error_data = compact('to', 'subject', 'message', 'headers', 'attachments');
+                        $mail_error_data['phpmailer_exception_code'] = $e->getCode();
 
-						return false;
-					}
-				}
-			}
+                        /**
+                         * Fires after a Exception is caught.
+                         *
+                         * @since 4.4.0
+                         *
+                         * @param WP_Error $error A WP_Error object with the Exception message, and an array
+                         *                        containing the mail recipient, subject, message, headers, and attachments.
+                         */
+                        do_action('wp_mail_failed', new WP_Error('wp_mail_failed', $e->getMessage(), $mail_error_data));
+
+                        return false;
+                    }
+                }
+
+            }
         }
 
         /**
          * Define constants needed across the plug-in.
          */
-        public function define_constants()
-        {
-            require_once(MAILAZY_ROOT_DIR."admin/index.php");
+        public function define_constants() {
+            require_once(MAILAZY_ROOT_DIR . "admin/index.php");
         }
 
         /**
          * Reset Sharing Settings.
          */
-        public static function reset_share_options()
-        {
+        public static function reset_share_options() {
             update_option('mailazy_option', '');
         }
+
         /**
          * Post Data validation
          */
-        public static function data_validation($key, $post){
+        public static function data_validation($key, $post) {
             return isset($post[$key]) && !empty($post[$key]) ? sanitize_text_field(esc_html(wp_kses(trim($post[$key])))) : false;
         }
+
     }
 
     new mailazyPlugin();

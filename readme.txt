@@ -1,11 +1,10 @@
-
 === Mailazy ===
 Contributors: mailazy
 Donate link: https://mailazy.com/
 Tags: WordPress plugin, Email API, SMTP, Send Mail, Woocommerce Mail
 Requires at least: 3.4
-Tested up to: 5.8
-Stable tag: 1.0
+Tested up to: 5.9
+Stable tag: 1.4
 Requires PHP: 5.6
 License: GPLv2 or later
 
@@ -31,8 +30,6 @@ Activate your plugin in WordPress by clicking on "Mailazy".
 1. Scr1
 2. Scr2
 3. Scr3
-4. Scr4
-5. Scr5
 
 == Support ==
 
@@ -67,11 +64,28 @@ We offer 24/7 support, reach out to our support team, or refer our product docum
 
 
 == Changelog ==
+= 1.4 = 
+* Add test email option in admin side
+
+= 1.2 =
+* Bug fix Contact form 7 compatibility
+
+= 1.1 =
+* WordPress latest version compatibility
 
 = 1.0 =
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.4 = 
+* Add test email option in admin side
+
+= 1.2 =
+* Bug fix Contact form 7 compatibility
+
+= 1.1 =
+* WordPress latest version compatibility
 
 = 1.0 =
 * Initial release
