@@ -52,3 +52,10 @@ if (!defined('ABSPATH')) {
         </form>
     </div>
 </div>
+<script>
+(function(){
+	if(document.getElementById('mailazy_fromemail').value == ''){
+		document.getElementById('mailazy_fromemail').value = 'info@'+window.location.hostname;
+	}
+})();
+</script>

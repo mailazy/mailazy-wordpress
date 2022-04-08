@@ -4,7 +4,7 @@ Donate link: https://mailazy.com/
 Tags: WordPress plugin, Email API, SMTP, Send Mail, Woocommerce Mail
 Requires at least: 3.4
 Tested up to: 5.9
-Stable tag: 1.4
+Stable tag: 1.5
 Requires PHP: 5.6
 License: GPLv2 or later
 
@@ -64,6 +64,9 @@ We offer 24/7 support, reach out to our support team, or refer our product docum
 
 
 == Changelog ==
+= 1.5 = 
+* Auto fill from email in admin
+
 = 1.4 = 
 * Add test email option in admin side
 
@@ -77,6 +80,9 @@ We offer 24/7 support, reach out to our support team, or refer our product docum
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.5 = 
+* Auto fill from email in admin
 
 = 1.4 = 
 * Add test email option in admin side
