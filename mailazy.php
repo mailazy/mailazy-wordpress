@@ -4,7 +4,7 @@
  * Plugin Name: Mailazy 
  * Plugin URI: https://github.com/mailazy/wordpress
  * Description: Mailazy provides a secure and delightful experience to your customer with Email API.
- * Version: 1.5
+ * Version: 1.6
  * Author: Mailazy Team
  * Author URI: https://mailazy.com
  * License: GPL2+
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 // If this file is called directly, abort.
 define('MAILAZY_ROOT_DIR', plugin_dir_path(__FILE__));
 define('MAILAZY_ROOT_URL', plugin_dir_url(__FILE__));
-define('MAILAZY_PLUGIN_VERSION', '1.5');
+define('MAILAZY_PLUGIN_VERSION', '1.6');
 define('MAILAZY_ROOT_SETTING_LINK', plugin_basename(__FILE__));
 
 if (!class_exists('mailazyPlugin')) {
