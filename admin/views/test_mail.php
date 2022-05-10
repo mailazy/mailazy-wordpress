@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 ?>
 <div id="mailazy_admin">
     <div class="mailazy_logo">
-        <img src="<?php echo MAILAZY_ROOT_URL . 'admin/assets/images/logo.svg'?>" alt="Mailazy" title="Mailazy">
+        <img src="<?php echo MAILAZY_ROOT_URL . 'admin/assets/images/logo.svg' ?>" alt="Mailazy" title="Mailazy">
     </div>
     <br/>
     <?php
@@ -16,12 +16,12 @@ if (!defined('ABSPATH')) {
         <form method="post" action="options.php"> 
             <?php
             settings_fields('mailazy_test_mail');
-			?>
+            ?>
             <div class="mailazy_field">
                 <label for="mailazy_test_to">
-                <?php _e('To <span class="mailazy_red">*</span> :','mailazy');?>
+                    <?php _e('To <span class="mailazy_red">*</span> :', 'mailazy'); ?>
                 </label>
-                <input type="text" id="mailazy_test_to" name="mailazy_test_mail[test_to]" placeholder="username@domain.com">
+                <input type="email" id="mailazy_test_to" name="mailazy_test_mail[test_to]" placeholder="username@domain.com">
             </div>
             <hr />
             <div class="mailazy_field">

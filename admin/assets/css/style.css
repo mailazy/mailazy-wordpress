@@ -11,7 +11,7 @@
     margin: 20px;
 }
 .mailazy_red{
-	color:red;
+    color:red;
 }
 #mailazy_admin label {
     width: 20%;
@@ -19,7 +19,11 @@
     vertical-align: top;
     font-weight: bold;
 }
-#mailazy_admin input[type=text],#mailazy_admin input[type=password]{
+#mailazy_admin #mailazy_enable_type{
+    min-width: 79%;
+    display: inline;
+}
+#mailazy_admin input[type=text],#mailazy_admin input[type=password],#mailazy_admin input[type="email"]{
     width: 79%;
     display: inline;
 }

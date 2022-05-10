@@ -18,10 +18,18 @@ class mailazyWPClient extends mailazyAPI {
         return wp_remote_retrieve_body($request);
     }
 
+    /**
+     * 
+     * @return type
+     */
     public function getCustomHeaders() {
         return array();
     }
 
+    /**
+     * 
+     * @return type
+     */
     public function clearCustomHeaders() {
         return array();
     }

@@ -4,7 +4,7 @@ Donate link: https://mailazy.com/
 Tags: Email API, SMTP, Send Mail, Mail, WP_Mail, Woocommerce Mail, wordpress email, email send, WordPress plugin, wordpress email plugin
 Requires at least: 3.4
 Tested up to: 5.9
-Stable tag: 1.6
+Stable tag: 2.0
 Requires PHP: 5.6
 License: GPLv2 or later
 
@@ -42,7 +42,7 @@ Activate your plugin in WordPress by clicking on "Mailazy".
 We offer 24/7 support, reach out to our support team, or refer our product documents
 
 -   Live chat
--   Email Support mailto:support@mailazy.com
+-   [Email Support](mailto:support@mailazy.com)
 -   [Support documentation](https://mailazy.com/docs/)
 
 == Frequently Asked Questions ==
@@ -70,6 +70,9 @@ We offer 24/7 support, reach out to our support team, or refer our product docum
 
 
 == Changelog ==
+= 2.0 = 
+* Developed SMTP functionality
+
 = 1.6 = 
 * Bug fix
 
@@ -89,6 +92,9 @@ We offer 24/7 support, reach out to our support team, or refer our product docum
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.0 = 
+* Developed SMTP functionality
 
 = 1.6 = 
 * Bug fix
