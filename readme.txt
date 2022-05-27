@@ -1,7 +1,7 @@
-=== Mailazy ===
+=== WP SMTP and Email API with Mailazy ===
 Contributors: mailazy
 Donate link: https://mailazy.com/
-Tags: Email API, SMTP, Send Mail, Mail, WP_Mail, Woocommerce Mail, wordpress email, email send, WordPress plugin, wordpress email plugin
+Tags: Email API, SMTP, Send Mail, Mail, WP_Mail, Woocommerce Mail, wordpress email, email send, WordPress plugin, wordpress email plugin, phpmailer, smtp wordpress, smtp wp_mail, wordpress smtp, WP Mail SMTP
 Requires at least: 3.4
 Tested up to: 6.0
 Stable tag: 2.1
@@ -18,12 +18,16 @@ Our goal is to make email deliverability easy and reliable. With Mailazy, We ens
 
 [youtube https://www.youtube.com/watch?v=MI7otXoKWQo]
 
-Mailazy fixes your email deliverability by reconfiguring WordPress to use Email API and SMTP when sending emails. Mailazy comes with an easy configuration Setup Wizard and detailed documentation to guide you through the process. Mailazy Email/Email API allows you to connect your WordPress with our low-cost, powerful Mailazy Email API and send emails as you want. Mailazy has trusted thousands of customers and application developers for sending and tracking emails. By taking advantage of Mailazyâ€™s powerful email APIs, developers can spend more time building awesome websites and less time fighting with email servers.
+Mailazy fixes your email deliverability by reconfiguring WordPress to use Email API and SMTP when sending emails. Mailazy comes with an easy configuration Setup Wizard and detailed documentation to guide you through the process. 
+
+Mailazy Email/Email API allows you to connect your WordPress with our low-cost, powerful Mailazy Email API and send emails as you want. Mailazy has trusted thousands of customers and application developers for sending and tracking emails. By taking advantage of Mailazy's powerful email APIs, developers can spend more time building awesome websites and less time fighting with email servers.
 
 
 ### How does the Mailazy WordPress plugin work?
 
-Mailazy plugin easily resolves email delivery problems and WordPress site not sending emails issue by improving and changing your WordPress site email sending capability. Mailazy reconfigures the wp_mail() function to use Email API credentials and SMTP. Mailazy emails are sent using the direct email API. This means even if your web host is blocking SMTP ports or creating issues, your emails are still sent successfully from your WordPress site.
+Mailazy plugin easily resolves email delivery problems and WordPress site not sending emails issue by improving and changing your WordPress site email sending capability. Mailazy reconfigures the wp_mail() function to use Email API credentials and SMTP. 
+
+Mailazy emails are sent using the direct email API. This means even if your web host is blocking SMTP ports or creating issues, your emails are still sent successfully from your WordPress site.
 
  
 ### Contributing

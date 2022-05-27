@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Mailazy 
+ * Plugin Name: WP SMTP and Email API with Mailazy 
  * Plugin URI: https://mailazy.com/
  * Description: Mailazy provides a secure and delightful experience to your customer with Email API.
  * Version: 2.1
