@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Plugin Name: WP SMTP and Email API with Mailazy 
+ * Plugin Name: WP SMTP and Email API 
  * Plugin URI: https://mailazy.com/
- * Description: Mailazy provides a secure and delightful experience to your customer with Email API.
- * Version: 2.1
+ * Description: Mailazy provides a secure and delightful experience to your customer with Email API OR SMTP.
+ * Version: 2.2
  * Author: Mailazy Team
  * Author URI: https://mailazy.com
  * License: GPL2+
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 // If this file is called directly, abort.
 define('MAILAZY_ROOT_DIR', plugin_dir_path(__FILE__));
 define('MAILAZY_ROOT_URL', plugin_dir_url(__FILE__));
-define('MAILAZY_PLUGIN_VERSION', '2.1');
+define('MAILAZY_PLUGIN_VERSION', '2.2');
 define('MAILAZY_ROOT_SETTING_LINK', plugin_basename(__FILE__));
 
 if (!class_exists('mailazy')) {
@@ -382,10 +382,10 @@ if (!class_exists('mailazy')) {
                 return;
             }
             $phpmailer->isSMTP();
-            $phpmailer->Host = 'smtp.mailazy.com';
-            $phpmailer->SMTPAuth = true;
-            $phpmailer->SMTPSecure = 'tls';
-            $phpmailer->Port = 587;
+            $phpmailer->Host = $mailazy_option["host"]?$mailazy_option["host"]:'smtp.mailazy.com';
+            $phpmailer->SMTPAuth = $mailazy_option["auth"]?$mailazy_option["auth"]:true;
+            $phpmailer->SMTPSecure = $mailazy_option["Secure"]?$mailazy_option["Secure"]:'tls';
+            $phpmailer->Port = $mailazy_option["port"]?$mailazy_option["port"]:587;
             $phpmailer->Username = $mailazy_option["apikey"];
             $phpmailer->Password = $mailazy_option["apisecretkey"];
             $phpmailer->From = $mailazy_option["fromemail"];

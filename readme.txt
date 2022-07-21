@@ -1,10 +1,10 @@
-=== WP SMTP and Email API with Mailazy ===
+=== WP SMTP and Email API ===
 Contributors: mailazy
 Donate link: https://mailazy.com/
 Tags: Email API, SMTP, Send Mail, Mail, WP_Mail, Woocommerce Mail, wordpress email, email send, WordPress plugin, wordpress email plugin, phpmailer, smtp wordpress, smtp wp_mail, wordpress smtp, WP Mail SMTP
 Requires at least: 3.4
 Tested up to: 6.0
-Stable tag: 2.1
+Stable tag: 2.2
 Requires PHP: 5.6
 License: GPLv2 or later
 
